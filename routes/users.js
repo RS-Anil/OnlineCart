@@ -13,6 +13,7 @@ const router = express.Router();
 // });
 
 router.post('/', async (req, res) => {
+
     try {
       //res.send(_.pick(req.body, ['name', 'email', 'password']))
       // const { error } =  (req.body); 
@@ -36,6 +37,7 @@ router.post('/', async (req, res) => {
       
     }
   
+
 });
 
 module.exports = router; 
