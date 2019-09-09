@@ -16,22 +16,22 @@ router.post('/', async (req, res) => {
 
     try {
       //res.send(_.pick(req.body, ['name', 'email', 'password']))
-      // const { error } =  (req.body); 
-      // if (error) return res.status(400).send(error.details[0].message);
+      const { error } =  (req.body); 
+      if (error) return res.status(400).send(error.details[0].message);
 
-      // let user = await User.findOne({ email: req.body.email });
-      // if (user) return res.status(400).send('User already registered.');
+      let user = await User.findOne({ email: req.body.email });
+      if (user) return res.status(400).send('User already registered.');
 
       user = new User(_.pick(req.body, ['name', 'email', 'password']));
       console.log(user)
-      //const salt = await bcrypt.genSalt(10);
-      //user.password = await bcrypt.hash(user.password, salt);
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(user.password, salt);
       const result = await user.save();
       console.log(result)
-      //const token = user.generateAuthToken();
-      //res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
+      const token = user.generateAuthToken();
+      res.header('x-auth-token', token).send(_.pick(user, ['_id', 'name', 'email']));
 
-      //res.send(_.pick(user, ['_id', 'name', 'email']));
+      res.send(_.pick(user, ['_id', 'name', 'email']));
     } catch (error) {
       console.log(error)
       
