@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 
 const users = require('./routes/users');
+const routeIndex =require("./routes/index")
 const express = require('express');
 const app = express();
 
@@ -23,7 +24,8 @@ mongoose.connect(databaseUri, { useNewUrlParser: true })
 //app.use(express.json())
 app.use(bodyParser.json());
 
-app.use('/api/users', users);
+//app.use('/api/users', users);
+app.use(routeIndex)
 
 const port = process.env.PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}...`));
