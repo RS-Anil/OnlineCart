@@ -3,7 +3,6 @@ const mongoose = require('./db/server');
 
 var bodyParser = require('body-parser');
 
-const users = require('./routes/users');
 const routeIndex =require("./routes/index")
 const express = require('express');
 const app = express();
@@ -14,6 +13,7 @@ if (!config.get('jwtPrivateKey')) {
 }
 
 mongoose.Promise = global.Promise;
+
 
 app.use(bodyParser.json());
 
