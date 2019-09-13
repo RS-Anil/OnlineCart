@@ -22,8 +22,9 @@ module.exports.addCategory = async (req, res, result) => {
 
 async function insertDocument(doc, Category) {
     try {
-        console.log("Doc", doc)
         let result
+        console.log("Doc------",JSON.stringify(doc))
+debugger;
         while (1) {
             var cursor = await Category.find({}, { Category_Id: 1 }).sort({ Category_Id: -1 }).limit(1)
             if (cursor[0] && cursor[0].Category_Id) {
@@ -34,9 +35,12 @@ async function insertDocument(doc, Category) {
                 console.log("seq else")
 
             }
+
             if (!doc.Category_Id || doc.Category_Id == 0) {
                 doc.Category_Id = seq;
                 doc = new Category(doc);
+        console.log("Doc------",JSON.stringify(doc))
+
                 result = await doc.save();
                 console.log(result)
             } else {
@@ -53,6 +57,7 @@ async function insertDocument(doc, Category) {
         }
         return result
     } catch (error) {
+        console.log(error)
         let key = (error.errmsg.split("index:")[1].split("dup key")[0].split("_1")[0]).trim()
         if (error.code == 11000 && key == 'Category_Id') {
             insertDocument(doc, Category)

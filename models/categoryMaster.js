@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const categorySchema = new mongoose.Schema({
+const CategorySchema = new mongoose.Schema({
     Category_Id:{
         type:Number,
         trim:true,
@@ -16,5 +16,5 @@ const categorySchema = new mongoose.Schema({
 });
 
 
-const category = mongoose.model('Category', categorySchema);
-module.exports = {category}
+const Category = mongoose.model('Category', CategorySchema);
+module.exports = { Category }
