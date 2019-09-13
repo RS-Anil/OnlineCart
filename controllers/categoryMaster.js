@@ -20,6 +20,16 @@ module.exports.addCategory = async (req, res, result) => {
     }
 }
 
+module.exports.getCategory = async (req, res, result) => {
+    try {
+        var Categories = await Category.find().sort( {Category:-1} )
+        res.status(200).json({'success':true,'error':false,"Categories":Categories})        
+    } catch (error) {
+        res.status(400).json({'success': false, 'error': true, 'message': error})
+    }
+}
+
+
 async function insertDocument(doc, Category) {
     try {
         let result
@@ -65,3 +75,5 @@ debugger;
         return ({ "Error": error.errmsg });
     }
 }
+
+
