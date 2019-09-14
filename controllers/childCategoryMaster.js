@@ -1,36 +1,32 @@
-const _ = require('lodash');
-var { ChildCategory } = require('../models/childCategoryMaster');
+const _ = require('lodash')
+var {ChildCategory} = require('../models/ChildCategoryMaster');
 
-module.exports.addChildCategory = async (req, res, results) => {
+module.exports.addChildCategory = async (req, res, result) => {
     try {
-        let body = req.body;
-        let saveCategories = [];
+        let body = req.body
+        let saveCategories = []
         for (let element of body) {
-            let payload = _.pick(element, ['ChilCategoryId', 'ChildCategory', 'Category', 'SubCategory']);
-            payload.ChildCategory = (payload.ChildCategory).toUpperCase();
-            let saveResponse = await insertDocument(payload.ChildCategory);
-            saveCategories.push(saveResponse);
-            res.status(200).json({ 'success': true, 'error': false, 'message': saveCategories })
-        }
+            let payload = _.pick(element, ['ChildCategory_Id', 'ChildCategory','Category', 'SubCategory']);
+            payload.ChildCategory = (payload.ChildCategory).toUpperCase()
+            let saveResponse = await insertDocument(payload,ChildCategory)
+            saveCategories.push(saveResponse)
+            }
+        res.status(200).json({'success': true, 'error': false, 'message': saveCategories})
     } catch (error) {
-        res.status(400).json({ 'success': false, 'error': error, 'message': "Error occured in Child category controller" })
+        //console.log(error)
+        res.status(400).json({'success': false, 'error': error, 'message': "Error occured in Child category controller"})
     }
 }
-
-module.exports.getChildCategory = async (req, res, results) => {
+module.exports.getChildCategory = async (req, res, result) => {
     try {
-        var ChildCategories = await ChildCategory.find().sort({ ChildCategory: -1 });
-        res.status(200).json({ 'success': true, 'error': false, "ChildCategories": ChildCategories })
-
+        var ChildCategories = await ChildCategory.find().sort( { ChildCategory: -1 } );
+        res.status(200).json({'success': true, 'error': false,"ChildCategories":ChildCategories});
     } catch (error) {
-        res.status(400).json({ 'success': false, 'error': error, 'message': "Error occured in Child category controller" })
+        res.status(400).json({'success': false, 'error': error, 'message': "Error occured in Child category controller"})
     }
 }
-
-
 async function insertDocument(doc, ChildCategory) {
     try {
-        debugger;
         let results
         while (1) {
             var cursor = await ChildCategory.find({}, { ChildCategory_Id: 1 }).sort( { ChildCategory_Id: -1 } ).limit(1)
@@ -63,4 +59,3 @@ async function insertDocument(doc, ChildCategory) {
         return ({"Error":error.errmsg || error});
     }
 }
-
