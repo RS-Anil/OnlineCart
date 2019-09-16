@@ -6,6 +6,7 @@ const user = require("../controllers/user");
 const category = require("../controllers/categoryMaster")
 const childcategory = require("../controllers/childCategoryMaster")
 const brand = require("../controllers/brand")
+const subCategory = require("../controllers/subCategoryMaster")
 
 router.get("/login", user.login);
 router.post("/api/register",user.saveUser);
