@@ -11,7 +11,7 @@ const ChildCategorySchema = new mongoose.Schema({
        unique:true
     },
     Category:[{
-        Category_id:{type:Number, trim:true, required:true},
+        Category_Id:{type:Number, trim:true, required:true},
         Category:{type:String, trim:true, required:true}
     }],
     SubCategory: [{
