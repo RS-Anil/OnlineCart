@@ -7,6 +7,7 @@ const category = require("../controllers/categoryMaster")
 const childcategory = require("../controllers/childCategoryMaster")
 const brand = require("../controllers/brand")
 const subCategory = require("../controllers/subCategoryMaster")
+const cartItem = require('../controllers/cart')
 
 router.get("/login", user.login);
 router.post("/api/register",user.saveUser);
@@ -18,6 +19,10 @@ router.get("/api/tagmaster/childcategory", childcategory.getChildCategory);
 router.post("/api/tagmaster/childcategory", childcategory.addChildCategory);
 router.get("/api/tagmaster/brand", brand.getBrand);
 router.post("/api/tagmaster/brand", brand.addBrand);
+
+router.post('/api/cart-item', cartItem.saveItem)
+router.get('/api/cart-item', cartItem.getItem)
+router.delete('/api/cart-item', cartItem.removeItem)
 
 
 

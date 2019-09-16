@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const productSchema = new mongoose.Schema({
+const ProductSchema = new mongoose.Schema({
     Product_Id:{
         type:Number,
         default:0
