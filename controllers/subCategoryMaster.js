@@ -1,5 +1,5 @@
 const _ = require('lodash')
-var {SubCategory} = require('../models/SubCategoryMaster');
+var { SubCategory } = require('../models/subCategoryMaster');
 
 module.exports.addSubCategory = async (req, res, result) => {
     try {
