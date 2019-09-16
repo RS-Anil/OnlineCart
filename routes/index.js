@@ -11,6 +11,8 @@ router.get("/login", user.login);
 router.post("/api/register",user.saveUser);
 router.get("/api/tagmaster/category", category.getCategory);
 router.post("/api/tagmaster/category", category.addCategory);
+router.get('/api/tagmaster/subcategory', subCategory.getSubCategory)
+router.post('/api/tagmaster/subcategory', subCategory.addSubCategory)
 router.get("/api/tagmaster/childcategory", childcategory.getChildCategory);
 router.post("/api/tagmaster/childcategory", childcategory.addChildCategory);
 router.get("/api/tagmaster/brand", brand.getBrand);
