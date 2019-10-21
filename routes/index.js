@@ -9,7 +9,7 @@ const brand = require("../controllers/brand")
 const subCategory = require("../controllers/subCategoryMaster")
 const cartItem = require('../controllers/cart')
 
-router.get("/login", user.login);
+router.post("/login", user.login);
 router.post("/api/register",user.saveUser);
 router.get("/api/tagmaster/category", category.getCategory);
 router.post("/api/tagmaster/category", category.addCategory);
